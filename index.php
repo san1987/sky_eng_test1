@@ -2,8 +2,17 @@
 
 require_once "db.php";
 
+if (!isset($_GET["days_in_period"])){
+	?>
+    <form method=get action=.>    ¬ведите количество дней в периоде:
+    <input type='text' name='days_in_period' value='3'><input type=submit>
+    </form>
+	<?
+	die;
+}
 
-$days_in_period=3;
+
+$days_in_period=intval($_GET["days_in_period"]);
 
 $r=mq("SELECT `added` FROM  `clients`  ORDER BY `added` ASC LIMIT 1");
 $row=fetch($r);
